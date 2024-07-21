@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>風船タスク管理アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>風船タスク管理アプリ</h1>
+        <form id="task-form">
+            <input type="text" id="task-name" placeholder="タスク名" required>
+            <input type="datetime-local" id="task-deadline" required>
+            <button type="submit">タスクを追加</button>
+        </form>
+        <div id="balloon-container"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
