@@ -5,7 +5,7 @@ document.getElementById('task-form').addEventListener('submit', function(event) 
     const taskDeadline = document.getElementById('task-deadline').value;
 
     if (new Date(taskDeadline) <= new Date()) {
-        alert('締め切りは現在の時刻よりも後に設定してください。');
+        alert('Please set a deadline that is later than the current time.');
         return;
     }
     
@@ -28,8 +28,8 @@ function calculateBalloonSize(taskDeadline) {
     const timeDiff = new Date(taskDeadline) - new Date();
     const hoursLeft = Math.ceil(timeDiff / (1000 * 60 * 60));
     const minBalloonSize = 100;
-    const maxBalloonSize = 400;
-    const balloonSize = Math.min(maxBalloonSize, minBalloonSize + (maxBalloonSize - minBalloonSize) * (1 - hoursLeft / (24 * 7)));
+    const maxBalloonSize = 350;
+    const balloonSize = Math.min(maxBalloonSize, minBalloonSize + (maxBalloonSize - minBalloonSize) * (1 - hoursLeft / (24 * 14)));
     return Math.max(minBalloonSize, balloonSize);
 }
 
@@ -61,7 +61,7 @@ function addTask(taskName, taskDeadline) {
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('delete-button');
     deleteButton.textContent = 'X';
-    deleteButton.title = 'タスクを削除する';  // Added tooltip
+    deleteButton.title = 'Delete Task';  // Added tooltip
     deleteButton.addEventListener('click', function() {
         balloonContainer.removeChild(balloon);
     });
@@ -69,7 +69,7 @@ function addTask(taskName, taskDeadline) {
     const completeButton = document.createElement('button');
     completeButton.classList.add('complete-button');
     completeButton.textContent = '✔';
-    completeButton.title = 'タスクを完了する';  // Added tooltip
+    completeButton.title = 'Complete Task';  // Added tooltip
     completeButton.addEventListener('click', function() {
         balloon.style.animation = 'explode 0.5s forwards';
         balloon.addEventListener('animationend', function() {
@@ -107,16 +107,16 @@ function updateBalloonSize(balloon, taskNameElement, deadlineElement, timeLeftEl
     balloon.style.width = balloonSize + 'px';
     balloon.style.height = balloonSize + 'px';
 
-    const fontSize = balloonSize / 12; // タスク名の文字サイズを少し小さくする
-    taskNameElement.style.fontSize = fontSize * 1.5 + 'px'; // 小さめに設定
-    taskNameElement.style.top = (balloonSize * 0.3) + 'px'; // 中央に寄せる
+    const fontSize = balloonSize / 12; // Make the font size a bit smaller
+    taskNameElement.style.fontSize = fontSize * 1.5 + 'px'; // Set to a smaller size
+    taskNameElement.style.top = (balloonSize * 0.3) + 'px'; // Centered
     deadlineElement.style.fontSize = fontSize + 'px';
     deadlineElement.style.top = (balloonSize * 0.5) + 'px';
     timeLeftElement.style.fontSize = fontSize + 'px';
-    timeLeftElement.style.top = (balloonSize * 0.7) + 'px'; // 中央に寄せる
+    timeLeftElement.style.top = (balloonSize * 0.7) + 'px'; // Centered
 
-    // ボタンサイズと位置を風船サイズに応じて動的に変更
-    const buttonSize = Math.max(20, balloonSize * 0.15); // 最小サイズを設定
+    // Adjust button size and position dynamically based on balloon size
+    const buttonSize = Math.max(20, balloonSize * 0.15); // Set minimum size
     deleteButton.style.width = buttonSize + 'px';
     deleteButton.style.height = buttonSize + 'px';
     deleteButton.style.fontSize = buttonSize * 0.5 + 'px';
