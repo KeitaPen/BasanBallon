@@ -84,7 +84,7 @@ body {
     border: 2px solid #ccc;
     border-radius: 50%;
     cursor: pointer;
-    /* display: none; /* Initially hidden */
+    display: none; /* Initially hidden */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s, transform 0.3s;
 }
