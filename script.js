@@ -29,7 +29,7 @@ function calculateBalloonSize(taskDeadline) {
     const hoursLeft = Math.ceil(timeDiff / (1000 * 60 * 60));
     const minBalloonSize = 100;
     const maxBalloonSize = 350;
-    const balloonSize = Math.min(maxBalloonSize, minBalloonSize + (maxBalloonSize - minBalloonSize) * (1 - hoursLeft / (24 * 14)));
+    const balloonSize = Math.min(maxBalloonSize, minBalloonSize + (maxBalloonSize - minBalloonSize) * (1 - hoursLeft / (24 * 7)));
     return Math.max(minBalloonSize, balloonSize);
 }
 
